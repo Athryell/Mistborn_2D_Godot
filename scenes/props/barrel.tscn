@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://blcq8fsbxiode"]
+
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_q2vh4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vcp7"]
+size = Vector2(22, 34)
+
+[node name="Barrel" type="RigidBody2D"]
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q2vh4")
+region_enabled = true
+region_rect = Rect2(195, 29, 27, 35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8vcp7")
+
+[node name="MetalPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="MetalPoints"]
+position = Vector2(0, -16)
+
+[node name="Marker2D2" type="Marker2D" parent="MetalPoints"]
+position = Vector2(0, 7)
+
+[node name="Marker2D3" type="Marker2D" parent="MetalPoints"]
+position = Vector2(0, -5)

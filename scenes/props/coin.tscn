@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://nxqogs6jprto"]
+
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_hajpc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhhrf"]
+radius = 1.0
+height = 6.0
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 5
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uhhrf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.940164, 0.863646, 0.10278, 1)
+scale = Vector2(0.9, 1)
+texture = ExtResource("1_hajpc")
+region_enabled = true
+region_rect = Rect2(398, 429, 3, 5)

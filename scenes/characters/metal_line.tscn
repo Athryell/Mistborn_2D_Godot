@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d30uyy7l5f1m4"]
+
+[node name="MetalLine" type="Line2D"]
+points = PackedVector2Array(0, 0, 20, 0)
+width = 1.0
+default_color = Color(0, 0.623724, 0.964361, 0.780392)
