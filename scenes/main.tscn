@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d4clr7lknx8m6"]
 
-[ext_resource type="PackedScene" uid="uid://bmjxg423jwqec" path="res://scenes/characters/player.tscn" id="1_72hlb"]
+[ext_resource type="PackedScene" uid="uid://cgvvs7rgtegs8" path="res://scenes/characters/player.tscn" id="1_72hlb"]
 [ext_resource type="Texture2D" uid="uid://cmvde77pgae26" path="res://assets/sprites/environment/village_props/TX Tileset Ground.png" id="2_m1llt"]
 [ext_resource type="PackedScene" uid="uid://nxqogs6jprto" path="res://scenes/props/coin.tscn" id="3_cqocb"]
 [ext_resource type="PackedScene" uid="uid://blcq8fsbxiode" path="res://scenes/props/barrel.tscn" id="4_f2jlj"]
@@ -2062,7 +2062,7 @@ texture = ExtResource("2_m1llt")
 31:31/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_o7al2"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 9
 sources/0 = SubResource("TileSetAtlasSource_6wf7o")
 
 [node name="Main" type="Node2D"]

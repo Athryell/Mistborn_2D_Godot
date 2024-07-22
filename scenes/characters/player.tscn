@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmjxg423jwqec"]
+[gd_scene load_steps=29 format=3 uid="uid://cgvvs7rgtegs8"]
 
 [ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_a7ek5"]
 [ext_resource type="Texture2D" uid="uid://d371uwrla801e" path="res://assets/sprites/characters/player/Warrior_SheetnoEffect.png" id="1_kdrah"]
@@ -199,7 +199,6 @@ lock_rotation = true
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_a7ek5")
-JUMP_STRENGTH = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -90)
@@ -215,7 +214,7 @@ position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_rem41")
 
 [node name="MetalDetector" type="Area2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(3, -4)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_giiat")
@@ -223,3 +222,18 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MetalDetector"]
 shape = SubResource("CircleShape2D_um6cj")
+
+[node name="GroundCheckLeft" type="RayCast2D" parent="."]
+position = Vector2(-5, 12)
+target_position = Vector2(0, 4)
+collision_mask = 8
+
+[node name="GroundCheckMiddle" type="RayCast2D" parent="."]
+position = Vector2(0, 12)
+target_position = Vector2(0, 4)
+collision_mask = 8
+
+[node name="GroundCheckRight" type="RayCast2D" parent="."]
+position = Vector2(6, 12)
+target_position = Vector2(0, 4)
+collision_mask = 8

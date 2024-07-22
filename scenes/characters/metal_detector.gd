@@ -62,7 +62,7 @@ func _process(delta):
 		#TODO: round the positions
 		if not _line_endpoint_dict.values().has(point):
 			var line = _get_line()
-			_line_endpoint_dict[line] = point
+			_line_endpoint_dict[line] = point #YODO IMPORTANT, change from a Vector2 point to an object, maybe create a component with array to handle metal points
 #
 	_set_lines_positions()
 	_select_closest_line_to_mouse()
@@ -85,11 +85,11 @@ func _input(event):
 	if not _closest_line:
 		return
 
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("click_left"):
 		_is_pulling = true
-	elif event.is_action_pressed("right_click"):
+	elif event.is_action_pressed("click_right"):
 		_is_pushing = true
-	elif event.is_action_released("left_click") or event.is_action_released("right_click"):
+	elif event.is_action_released("click_left") or event.is_action_released("click_right"):
 		_is_pulling = false
 		_is_pushing = false
 
@@ -103,8 +103,8 @@ func _apply_force_to_metal():
 	if not _line_endpoint_dict.has(_closest_line):
 		return
 
-	var point_offset: Vector2 = _line_endpoint_dict[_closest_line].global_position
-	var metal_obj = _line_endpoint_dict[_closest_line].get_parent().get_node("RigidBody2D")
+	var point_offset = _line_endpoint_dict[_closest_line].global_position
+	var metal_obj = _line_endpoint_dict.[_closest_line].get_parent().get_node("RigidBody2D")
 	#var forceDirection = global_position - metalObjRb.global_position
 	#var distance = forceDirection.length()
 

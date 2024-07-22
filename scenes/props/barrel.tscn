@@ -6,7 +6,7 @@
 size = Vector2(22, 34)
 
 [node name="Barrel" type="RigidBody2D"]
-collision_layer = 5
+collision_layer = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q2vh4")
