@@ -1,8 +1,17 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgvvs7rgtegs8"]
+[gd_scene load_steps=31 format=3 uid="uid://cgvvs7rgtegs8"]
 
 [ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_a7ek5"]
 [ext_resource type="Texture2D" uid="uid://d371uwrla801e" path="res://assets/sprites/characters/player/Warrior_SheetnoEffect.png" id="1_kdrah"]
+[ext_resource type="Script" path="res://scenes/characters/player_camera.gd" id="2_j2kou"]
+[ext_resource type="Script" path="res://scenes/characters/animated_sprite.gd" id="3_afcn6"]
 [ext_resource type="Script" path="res://scenes/characters/metal_detector.gd" id="3_giiat"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rem41"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_um6cj"]
+radius = 190.024
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6b7yb"]
 atlas = ExtResource("1_kdrah")
@@ -183,31 +192,25 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 8.0
+"speed": 10.0
 }]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rem41"]
-radius = 8.0
-height = 32.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_um6cj"]
-radius = 190.024
 
 [node name="Player" type="RigidBody2D"]
 position = Vector2(0, -15)
+collision_layer = 2
+collision_mask = 8
+mass = 60.0
 lock_rotation = true
-max_contacts_reported = 1
+continuous_cd = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_a7ek5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -90)
+offset = Vector2(0, -20)
+zoom = Vector2(1.38, 1.38)
 position_smoothing_enabled = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(8, -6)
-sprite_frames = SubResource("SpriteFrames_wyoiw")
-animation = &"idle"
+script = ExtResource("2_j2kou")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -237,3 +240,10 @@ collision_mask = 8
 position = Vector2(6, 12)
 target_position = Vector2(0, 4)
 collision_mask = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wyoiw")
+animation = &"idle"
+frame_progress = 0.955811
+offset = Vector2(7, -6)
+script = ExtResource("3_afcn6")
