@@ -3,14 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_q2vh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vcp7"]
-size = Vector2(22, 34)
+size = Vector2(14, 22)
 
 [node name="Barrel" type="RigidBody2D"]
 collision_layer = 12
-collision_mask = 8
+collision_mask = 10
 mass = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.64, 0.64)
 texture = ExtResource("1_q2vh4")
 region_enabled = true
 region_rect = Rect2(195, 29, 27, 35)
@@ -21,10 +22,10 @@ shape = SubResource("RectangleShape2D_8vcp7")
 [node name="MetalPoints" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="MetalPoints"]
-position = Vector2(0, -16)
+position = Vector2(0, -10)
 
 [node name="Marker2D2" type="Marker2D" parent="MetalPoints"]
-position = Vector2(0, 7)
+position = Vector2(0, -3)
 
 [node name="Marker2D3" type="Marker2D" parent="MetalPoints"]
-position = Vector2(0, -5)
+position = Vector2(0, 5)

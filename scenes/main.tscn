@@ -1,11 +1,22 @@
-[gd_scene load_steps=12 format=4 uid="uid://d4clr7lknx8m6"]
+[gd_scene load_steps=23 format=4 uid="uid://d4clr7lknx8m6"]
 
+[ext_resource type="Script" path="res://scripts/managers/mouse_manager.gd" id="1_6877a"]
+[ext_resource type="Texture2D" uid="uid://6abjasjbic4p" path="res://assets/game_background/layers/sky.png" id="1_mwprm"]
+[ext_resource type="Texture2D" uid="uid://6hm83ba2wijw" path="res://assets/cursors/bracket_horizontal.png" id="2_2um2r"]
+[ext_resource type="Texture2D" uid="uid://dwskjddkvwrwd" path="res://assets/game_background/layers/rocks.png" id="2_8t8c8"]
 [ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="2_fdlti"]
 [ext_resource type="Texture2D" uid="uid://cmvde77pgae26" path="res://assets/sprites/environment/village_props/TX Tileset Ground.png" id="2_m1llt"]
+[ext_resource type="Texture2D" uid="uid://iyl74g0e3kyx" path="res://assets/cursors/arrows_pull.png" id="3_505fq"]
 [ext_resource type="PackedScene" uid="uid://nxqogs6jprto" path="res://scenes/props/coin.tscn" id="3_cqocb"]
+[ext_resource type="Texture2D" uid="uid://l2y25f7sl56l" path="res://assets/game_background/layers/clouds_1.png" id="3_p3fv8"]
 [ext_resource type="PackedScene" uid="uid://bmq1q36f6ylh6" path="res://scenes/props/lamp.tscn" id="3_q4t6o"]
 [ext_resource type="PackedScene" uid="uid://blcq8fsbxiode" path="res://scenes/props/barrel.tscn" id="4_f2jlj"]
+[ext_resource type="Texture2D" uid="uid://bv3khncpg3nx" path="res://assets/game_background/layers/clouds_2.png" id="4_ijh6t"]
+[ext_resource type="Texture2D" uid="uid://cexapxw8exgrt" path="res://assets/game_background/layers/ground_1.png" id="5_6lou0"]
 [ext_resource type="PackedScene" uid="uid://cgvvs7rgtegs8" path="res://scenes/characters/player.tscn" id="5_757aa"]
+[ext_resource type="Texture2D" uid="uid://dcbp53kixcxt1" path="res://assets/game_background/layers/ground_2.png" id="6_bmuqa"]
+[ext_resource type="Texture2D" uid="uid://dy1nrbtfnpa36" path="res://assets/game_background/layers/ground_3.png" id="7_3jdr2"]
+[ext_resource type="Texture2D" uid="uid://doqc7a7wnudir" path="res://assets/game_background/layers/plant.png" id="8_xdw4l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6wf7o"]
 texture = ExtResource("2_m1llt")
@@ -2113,6 +2124,97 @@ radius = 1.0
 
 [node name="Main" type="Node2D"]
 
+[node name="MouseManager" type="Node2D" parent="."]
+script = ExtResource("1_6877a")
+
+[node name="CursorBracket" type="Sprite2D" parent="MouseManager"]
+visible = false
+z_index = 50
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_2um2r")
+
+[node name="CursorArrows" type="Sprite2D" parent="MouseManager"]
+visible = false
+z_index = 50
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_505fq")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_mwprm")
+
+[node name="Rocks" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Rocks"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_8t8c8")
+
+[node name="Clouds1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds1"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_p3fv8")
+
+[node name="Clouds2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_ijh6t")
+
+[node name="Ground1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground1"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_6lou0")
+
+[node name="Ground2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground2"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_bmuqa")
+
+[node name="Ground3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(320, 180)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Ground3"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_3jdr2")
+
+[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
+layer = 100
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxForeground"]
+position = Vector2(320, 160)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxForeground/ParallaxLayer"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_xdw4l")
+
 [node name="TileMap" type="Node2D" parent="."]
 
 [node name="Floor" type="TileMapLayer" parent="TileMap"]
@@ -2142,7 +2244,7 @@ mass = 100.0
 angular_damp = 5.0
 
 [node name="Barrel" parent="." instance=ExtResource("4_f2jlj")]
-position = Vector2(53, 300)
+position = Vector2(119, 308)
 
 [node name="Barrel4" parent="." instance=ExtResource("4_f2jlj")]
 position = Vector2(573, 300)
@@ -2160,28 +2262,21 @@ position = Vector2(241, 289)
 
 [node name="Coin" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(433, 207)
-mass = 0.2
 
 [node name="Coin4" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(838, 192)
-mass = 0.2
 
 [node name="Coin5" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(1132, -152)
-mass = 0.2
 
 [node name="Coin6" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(1426, 21)
-mass = 0.2
 
 [node name="Coin7" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(1419, -231)
-mass = 0.2
 
 [node name="Coin2" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(363, 258)
-mass = 0.2
 
 [node name="Coin3" parent="Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(233, 126)
-mass = 0.2

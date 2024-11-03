@@ -7,14 +7,13 @@ var airborn_offset := Vector2(0, -20)
 var starting_zoom := Vector2(1.5, 1.5)
 var airborne_zoom := Vector2(1, 1)
 
-@onready var metal_detector: Area2D = $"../MetalDetector"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_zoom(starting_zoom)
 	set_offset(starting_offset)
-	metal_detector.start_detecting_metals.connect(_zoom_out)
-	metal_detector.stop_detecting_metals.connect(_zoom_in)
+	SignalBus.start_detecting_metals.connect(_zoom_out)
+	SignalBus.stop_detecting_metals.connect(_zoom_in)
 
 
 func _zoom_out() -> void:

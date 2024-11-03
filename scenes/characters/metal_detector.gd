@@ -1,7 +1,5 @@
 extends Area2D
 
-signal start_detecting_metals
-signal stop_detecting_metals
 
 const STARTING_LINES_AMOUNT = 2
 
@@ -9,15 +7,27 @@ var line_scene: PackedScene = load("res://scenes/characters/metal_line.tscn")
 #var chest_point: Transform
 #var detection_radius: float = 5.0
 
-var is_pushing := false
-var is_pulling := false
+var is_pushing := false:
+	set(value):
+		is_pushing = value
+		if is_pushing:
+			SignalBus.start_pushing.emit()
+		else:
+			SignalBus.stop_push_or_pulling.emit()
+var is_pulling := false:
+	set(value):
+		is_pulling = value
+		if is_pulling:
+			SignalBus.start_pulling.emit()
+		else:
+			SignalBus.stop_push_or_pulling.emit()
 var is_detecting_metals := false:
 	set(value):
 		is_detecting_metals = value
 		if value == true:
-			start_detecting_metals.emit()
+			SignalBus.start_detecting_metals.emit()
 		else:
-			stop_detecting_metals.emit()
+			SignalBus.stop_detecting_metals.emit()
 
 var _lines_pool: Array[Line2D]
 var _line_endpoint_dict: Dictionary # [Line2D, Rigidbody2D]
@@ -73,6 +83,7 @@ func _process(_delta):
 
 	_set_lines_positions()
 	_select_closest_line_to_mouse()
+	_highlight_line()
 
 
 func _input(event):
@@ -109,29 +120,37 @@ func _input(event):
 
 func _physics_process(_delta):
 	if is_pulling or is_pushing:
-		_apply_force_to_metal()
+		if not _line_endpoint_dict.has(_closest_line):
+			return
+
+		apply_force_to_metal(_line_endpoint_dict[_closest_line], is_pulling)
 
 
-func _apply_force_to_metal():
-	if not _line_endpoint_dict.has(_closest_line):
-		return
-
-	var metal_obj = _line_endpoint_dict[_closest_line]
+func apply_force_to_metal(metal_obj: RigidBody2D, pull: bool):
+	#var metal_obj = _line_endpoint_dict[_closest_line]
+	var temp_metal_mass
 	var force_direction = global_position - metal_obj.global_position
 	var distance = force_direction.length()
 	distance = clamp(distance, Globals.MAGNET_MIN_CLAMP, Globals.MAGNET_MAX_CLAMP)
 	
-	var force_strength = (parent.mass * metal_obj.mass) / (distance * distance) * Globals.MAGNET_FORCE_MODIFIER
+	temp_metal_mass = metal_obj.mass
+	if metal_obj is BaseMetalObj:
+		if metal_obj.is_grounded:
+			if not pull and global_position.y < metal_obj.global_position.y or\
+				pull and global_position.y > metal_obj.global_position.y:
+				temp_metal_mass = 100
 	
-	if is_pulling:
-		_apply_force_to_bodies(-force_direction.normalized() * force_strength, metal_obj)
-	elif is_pushing:
-		_apply_force_to_bodies(force_direction.normalized() * force_strength, metal_obj)
+	var force_strength = (parent.mass * temp_metal_mass) / (distance * distance) * Globals.MAGNET_FORCE_MODIFIER
+	
+	if pull:
+		_apply_force_to_bodies(-force_direction.normalized() * force_strength, metal_obj, temp_metal_mass)
+	else:
+		_apply_force_to_bodies(force_direction.normalized() * force_strength, metal_obj, temp_metal_mass)
 
 
-func _apply_force_to_bodies(force_vector: Vector2, metal_obj: RigidBody2D) -> void:
+func _apply_force_to_bodies(force_vector: Vector2, metal_obj: RigidBody2D, temp_metal_mass: float) -> void:
 	parent.apply_central_force(force_vector)
-	if metal_obj.mass < 100:
+	if temp_metal_mass < 100:
 		metal_obj.apply_central_force(-force_vector)
 
 
@@ -151,7 +170,15 @@ func _select_closest_line_to_mouse():
 			min_angle_difference = angle_diff
 			_closest_line = line
 
-	_highlight_line()
+
+#func shoot(coin: RigidBody2D) -> void:
+	#if not _line_endpoint_dict.values().has(coin):
+		#var line = _get_line()
+		#_line_endpoint_dict[line] = coin
+		#_set_lines_positions()
+		#_closest_line = line
+		#_highlight_line()
+		#is_pushing = true
 
 
 func _highlight_line():

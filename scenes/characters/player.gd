@@ -5,14 +5,13 @@ const JUMP_STRENGTH := 25000.0
 const SPEED := 150000.0
 
 @export var max_velocity := 300.0
-@export var coin_shoot_distance := 25
 
 var _is_grounded: bool = false
 var _is_shooting := false
-var _first_impulse := false
 var direction = 0
 var coin
 
+@onready var metal_detector: Area2D = $MetalDetector
 @onready var _ground_check_l = $GroundCheckLeft
 @onready var _ground_check_r = $GroundCheckRight
 @onready var _ground_check_m = $GroundCheckMiddle
@@ -26,9 +25,8 @@ func _process(_delta):
 	
 	if not $MetalDetector.is_detecting_metals:
 		if Input.is_action_just_pressed("push_metal"):
-			_is_shooting = true
-			_first_impulse = true
 			shoot()
+			_is_shooting = true
 		elif Input.is_action_just_released("push_metal"):
 			_is_shooting = false
 		
@@ -44,7 +42,7 @@ func _integrate_forces(state):
 		state.apply_central_impulse(Vector2.UP * JUMP_STRENGTH)
 	
 	if _is_shooting:
-		apply_coin_force()
+		metal_detector.apply_force_to_metal(coin, false)
 
 
 func shoot() -> void:
@@ -52,25 +50,14 @@ func shoot() -> void:
 	var dir = (mouse_pos - global_position).normalized()
 	
 	coin = COIN.instantiate()
-	coin.global_position = global_position + dir
-	#coin.global_position = global_position + dir * coin_shoot_distance
+	coin.global_position = global_position + dir * 15
 	_coins_container.add_child(coin)
+	
+	_apply_first_impulse()
 
 
-func apply_coin_force() -> void:
+func _apply_first_impulse() -> void:
 	var force_direction = global_position - coin.global_position
-	var distance = force_direction.length()
-	distance = clamp(distance, Globals.MAGNET_MIN_CLAMP, Globals.MAGNET_MAX_CLAMP)
+	var distance = clamp(force_direction.length(), Globals.MAGNET_MIN_CLAMP, Globals.MAGNET_MAX_CLAMP)
 	var force_strength = (mass * coin.mass) / (distance * distance) * Globals.MAGNET_FORCE_MODIFIER
-	
-	#apply_central_impulse(force_direction.normalized() * force_strength)
-	#coin.apply_central_impulse(-force_direction.normalized() * force_strength)
-	
-	var force_vector = force_direction.normalized() * force_strength
-	apply_central_force(force_vector)
-	if _first_impulse:
-		_first_impulse = false
-		coin.apply_central_impulse(-force_vector * 10)
-	else:
-		if coin.mass < 100:
-			coin.apply_central_force(-force_vector)
+	coin.apply_central_impulse(-force_direction.normalized() * force_strength)
