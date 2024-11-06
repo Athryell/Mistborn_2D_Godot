@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlwmcfi332p6i"]
+
+[ext_resource type="Texture2D" uid="uid://dlclq107sngy4" path="res://assets/sprites/coins/coin bag.png" id="1_agfgk"]
+[ext_resource type="PackedScene" uid="uid://640hli1ts7c4" path="res://components/ground_check_component.tscn" id="1_uojdo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyr0h"]
+size = Vector2(9.75, 8.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gal2o"]
+size = Vector2(12, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vng6o"]
+atlas = ExtResource("1_agfgk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rhwm"]
+atlas = ExtResource("1_agfgk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0ihj"]
+atlas = ExtResource("1_agfgk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ieb3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vng6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rhwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0ihj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="CoinPouch" type="RigidBody2D" groups=["coins"]]
+collision_layer = 20
+collision_mask = 8
+lock_rotation = true
+metadata/value = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.125, 0.625)
+shape = SubResource("RectangleShape2D_cyr0h")
+
+[node name="GroundCheck" parent="." instance=ExtResource("1_uojdo")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCheck"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_gal2o")
+debug_color = Color(0.760501, 0.354002, 0.722347, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ieb3t")
+frame_progress = 0.340809

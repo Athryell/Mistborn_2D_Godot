@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://blcq8fsbxiode"]
+[gd_scene load_steps=5 format=3 uid="uid://blcq8fsbxiode"]
 
 [ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_q2vh4"]
+[ext_resource type="PackedScene" uid="uid://640hli1ts7c4" path="res://components/ground_check_component.tscn" id="3_vwcha"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to666"]
+size = Vector2(16, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vcp7"]
 size = Vector2(14, 22)
@@ -9,6 +13,12 @@ size = Vector2(14, 22)
 collision_layer = 12
 collision_mask = 10
 mass = 10.0
+
+[node name="GroundCheck" parent="." instance=ExtResource("3_vwcha")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCheck"]
+shape = SubResource("RectangleShape2D_to666")
+debug_color = Color(0.786873, 0.313388, 0.752033, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.64, 0.64)

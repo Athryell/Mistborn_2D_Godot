@@ -1,5 +1,15 @@
 Background - https://free-game-assets.itch.io/free-horizontal-game-backgrounds
 Character -
-Village props -
+Village props - https://cainos.itch.io/pixel-art-platformer-village-props
 Cursor - https://kenney-assets.itch.io/cursor-pack
 Potion - https://www.flaticon.com/free-icon/magic-potion_2778344
+Font - https://damieng.com/typography/zx-origins/thinserif/
+Dialogue - Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0
+(Potions icons - https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack
+https://hypedigi.itch.io/coin-potion-gem-assets
+Coins - https://its-lerm.itch.io/16-bit-currency-set
+
+Music
+pads-with-flute-143993 - Music by <a href="https://pixabay.com/it/users/onetent-15616180/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=143993">Shakib Hasan</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=143993">Pixabay</a>
+ancient legend - Music by <a href="https://pixabay.com/it/users/sergepavkinmusic-6130722/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=187639">Sergii Pavkin</a> from <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=187639">Pixabay</a>
+rainbow bridge - Music by <a href="https://pixabay.com/it/users/u_9aiuvdxlyb-43200002/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=245654">u_9aiuvdxlyb</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=245654">Pixabay</a>

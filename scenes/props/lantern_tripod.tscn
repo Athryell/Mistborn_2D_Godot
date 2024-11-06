@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceohavljlyew5"]
+
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_vrlru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fog8"]
+radius = 1.0
+
+[node name="LanternTripod" type="PinJoint2D"]
+node_a = NodePath("Lantern")
+
+[node name="Lantern" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lantern"]
+shape = SubResource("CircleShape2D_2fog8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lantern"]
+position = Vector2(-10, 3)
+texture = ExtResource("1_vrlru")
+region_enabled = true
+region_rect = Rect2(976, 38, 33, 25)

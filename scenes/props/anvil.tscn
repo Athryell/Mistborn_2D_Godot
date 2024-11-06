@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqosangqgiuk"]
+
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_qa081"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp0s1"]
+size = Vector2(40, 19)
+
+[node name="Anvil" type="RigidBody2D"]
+collision_layer = 12
+collision_mask = 10
+mass = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qp0s1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qa081")
+region_enabled = true
+region_rect = Rect2(857, 172, 42, 20)

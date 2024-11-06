@@ -1,6 +1,5 @@
 extends Area2D
 
-
 const STARTING_LINES_AMOUNT = 2
 
 var line_scene: PackedScene = load("res://scenes/characters/metal_line.tscn")
@@ -127,6 +126,8 @@ func _physics_process(_delta):
 
 
 func apply_force_to_metal(metal_obj: RigidBody2D, pull: bool):
+	if not metal_obj:
+		return
 	#var metal_obj = _line_endpoint_dict[_closest_line]
 	var temp_metal_mass
 	var force_direction = global_position - metal_obj.global_position
@@ -134,8 +135,9 @@ func apply_force_to_metal(metal_obj: RigidBody2D, pull: bool):
 	distance = clamp(distance, Globals.MAGNET_MIN_CLAMP, Globals.MAGNET_MAX_CLAMP)
 	
 	temp_metal_mass = metal_obj.mass
-	if metal_obj is BaseMetalObj:
-		if metal_obj.is_grounded:
+	if metal_obj.has_node("GroundCheck"):
+		var obj_gc = metal_obj.get_node("GroundCheck")
+		if obj_gc.is_grounded:
 			if not pull and global_position.y < metal_obj.global_position.y or\
 				pull and global_position.y > metal_obj.global_position.y:
 				temp_metal_mass = 100

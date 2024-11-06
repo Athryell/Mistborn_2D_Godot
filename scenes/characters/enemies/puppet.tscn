@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://t2kkw6a0a12o"]
+
+[ext_resource type="Script" path="res://scenes/characters/enemies/puppet.gd" id="1_ag63c"]
+[ext_resource type="Shader" path="res://shaders/hit.gdshader" id="2_oaacn"]
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="2_xpn77"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov0mc"]
+shader = ExtResource("2_oaacn")
+shader_parameter/white_amount = 0.0
+shader_parameter/wave_amount = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aloer"]
+radius = 9.0
+height = 54.0
+
+[node name="Puppet" type="Area2D"]
+collision_mask = 32
+script = ExtResource("1_ag63c")
+
+[node name="SpritePuppet" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ov0mc")
+position = Vector2(0, 7)
+texture = ExtResource("2_xpn77")
+region_enabled = true
+region_rect = Rect2(777, 253, 47, 68)
+
+[node name="SpriteScarecrow" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ov0mc")
+position = Vector2(0, -5)
+texture = ExtResource("2_xpn77")
+region_enabled = true
+region_rect = Rect2(704, 230, 64, 90)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_aloer")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
