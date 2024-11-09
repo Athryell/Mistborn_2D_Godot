@@ -9,7 +9,7 @@ enum States {PUPPET, SCARECROW}
 
 var _states_data = {
 	States.PUPPET: {"base_health": 3, "sprite": "SpritePuppet"},
-	States.SCARECROW: {"base_health": 10, "sprite": "SpriteScarecrow"},
+	States.SCARECROW: {"base_health": 1, "sprite": "SpriteScarecrow"},
 }
 var _health: int
 var _sprite: Sprite2D
@@ -63,8 +63,7 @@ func _go_to_next_state() -> void:
 			for i in 4:
 				var new_pouch = COIN_POUCH.instantiate()
 				new_pouch.global_position = global_position
-				_coins_container.add_child(new_pouch)
 				var rand_dir = Vector2(randi_range(-1, 1), randi_range(-1, 1))
-				new_pouch.apply_central_impulse(rand_dir * 100)
-				
-			call_deferred("queue_free")
+				new_pouch.apply_central_impulse(rand_dir * 150)
+				_coins_container.call_deferred("add_child", new_pouch)
+			queue_free()

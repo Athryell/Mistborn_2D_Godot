@@ -19,3 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 				body.call_deferred("queue_free")
 		else:
 			push_error("No GroundCheck component or meta 'Value' for ", body)
+
+
+func take_damage(amount: int) -> void:
+	parent.take_damage(amount)

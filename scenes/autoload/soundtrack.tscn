@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmt8ufdb14ett"]
+
+[ext_resource type="AudioStream" uid="uid://brm3hqxy41adw" path="res://assets/music/pads-with-flute-143993.mp3" id="1_0dexh"]
+
+[node name="Soundtrack" type="AudioStreamPlayer"]
+stream = ExtResource("1_0dexh")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true

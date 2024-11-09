@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bor1ps4jk2fm3"]
+
+[ext_resource type="PackedScene" uid="uid://640hli1ts7c4" path="res://components/ground_check_component.tscn" id="1_rq751"]
+[ext_resource type="Script" path="res://scenes/collectibles/potion_base.gd" id="1_ts70x"]
+[ext_resource type="Texture2D" uid="uid://dgovt01258441" path="res://assets/sprites/potions_assets_pack/Potions Assets Pack Outline - White Bg - 32x32.png" id="2_s7aj0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37you"]
+radius = 3.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mt0l1"]
+radius = 5.0
+height = 20.0
+
+[node name="PotionBase" type="RigidBody2D"]
+collision_layer = 20
+collision_mask = 8
+script = ExtResource("1_ts70x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_37you")
+
+[node name="GroundCheck" parent="." instance=ExtResource("1_rq751")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCheck"]
+shape = SubResource("CapsuleShape2D_mt0l1")
+debug_color = Color(0.830678, 0.260946, 0.735284, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_s7aj0")
+region_enabled = true
+region_rect = Rect2(42, 97, 12, 31)

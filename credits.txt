@@ -1,13 +1,37 @@
+https://coppermind.net/wiki/Steel_alphabet
+TODO:
+	[ ] - Import Keyboard sprites
+	[ ] - Jump buffer, coyote time, faster stop
+	[x] - Wall stick sprite, death animation
+	[ ] - Attacking enemy (scarecrow)
+	-> JUICY STUFF
+		[ ] - scarecrow animation / transformation / impact
+		[ ] - run or ground impact dust
+		[ ] - environmental fog?!
+	[ ] - depleting metal
+	[ ] - checkpoint on the spikes, scarecrow, playground
+	-> LEVEL
+		[ ] - Create playground
+	-> SOUND FX
+		[x] - Music
+		[ ] - Effects: shoot, impact enemy, hurt, die, metal activation, maybe push pull? 
+TOFIX:
+	- line rendering bug when collecting money while pulling (I guess)
+
+CREDITS:
 Background - https://free-game-assets.itch.io/free-horizontal-game-backgrounds
+		   - https://brullov.itch.io/oak-woods
 Character -
 Village props - https://cainos.itch.io/pixel-art-platformer-village-props
 Cursor - https://kenney-assets.itch.io/cursor-pack
 Potion - https://www.flaticon.com/free-icon/magic-potion_2778344
 Font - https://damieng.com/typography/zx-origins/thinserif/
 Dialogue - Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0
-(Potions icons - https://kyrise.itch.io/kyrises-free-16x16-rpg-icon-pack
-https://hypedigi.itch.io/coin-potion-gem-assets
+Potions icons - https://modnifico.itch.io/free-potions-assets-pack-32x32
 Coins - https://its-lerm.itch.io/16-bit-currency-set
+Bars - https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar
+UI - https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar
+Effects & FX - https://bdragon1727.itch.io/750-effect-and-fx-pixel-all
 
 Music
 pads-with-flute-143993 - Music by <a href="https://pixabay.com/it/users/onetent-15616180/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=143993">Shakib Hasan</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=143993">Pixabay</a>

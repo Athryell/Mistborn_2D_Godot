@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Globals="*res://scripts/globals/globals.gd"
 SignalBus="*res://scripts/globals/signal_bus.gd"
+Soundtrack="*res://scenes/autoload/soundtrack.tscn"
 
 [display]
 
