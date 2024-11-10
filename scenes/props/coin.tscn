@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://nxqogs6jprto"]
+[gd_scene load_steps=6 format=3 uid="uid://nxqogs6jprto"]
 
+[ext_resource type="Script" path="res://scenes/props/coin.gd" id="1_3e08a"]
 [ext_resource type="PackedScene" uid="uid://640hli1ts7c4" path="res://components/ground_check_component.tscn" id="1_b2eir"]
 [ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="1_hajpc"]
 
@@ -16,6 +17,7 @@ collision_layer = 52
 collision_mask = 8
 mass = 0.2
 continuous_cd = 1
+script = ExtResource("1_3e08a")
 metadata/value = 1
 
 [node name="GroundCheck" parent="." instance=ExtResource("1_b2eir")]

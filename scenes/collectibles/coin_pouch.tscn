@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlwmcfi332p6i"]
+[gd_scene load_steps=10 format=3 uid="uid://dlwmcfi332p6i"]
 
 [ext_resource type="Texture2D" uid="uid://dlclq107sngy4" path="res://assets/sprites/coins/coin bag.png" id="1_agfgk"]
+[ext_resource type="Script" path="res://scenes/props/collectible.gd" id="1_oi7qq"]
 [ext_resource type="PackedScene" uid="uid://640hli1ts7c4" path="res://components/ground_check_component.tscn" id="1_uojdo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyr0h"]
@@ -42,6 +43,7 @@ animations = [{
 collision_layer = 20
 collision_mask = 8
 lock_rotation = true
+script = ExtResource("1_oi7qq")
 metadata/value = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

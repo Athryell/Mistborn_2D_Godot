@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://t2kkw6a0a12o"]
+[gd_scene load_steps=9 format=3 uid="uid://t2kkw6a0a12o"]
 
 [ext_resource type="Script" path="res://scenes/characters/enemies/puppet.gd" id="1_ag63c"]
 [ext_resource type="Shader" path="res://shaders/hit.gdshader" id="2_oaacn"]
@@ -12,6 +12,83 @@ shader_parameter/wave_amount = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aloer"]
 radius = 9.0
 height = 54.0
+
+[sub_resource type="Animation" id="Animation_s5r1x"]
+resource_name = "attack"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteScarecrow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(0.5, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [Vector2(1, 0)],
+"method": &"_shoot_coin"
+}, {
+"args": [Vector2(1, 0)],
+"method": &"_shoot_coin"
+}, {
+"args": [Vector2(1, 0)],
+"method": &"_shoot_coin"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [Vector2(-1, 0)],
+"method": &"_shoot_coin"
+}, {
+"args": [Vector2(-1, 0)],
+"method": &"_shoot_coin"
+}, {
+"args": [Vector2(-1, 0)],
+"method": &"_shoot_coin"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_huptq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteScarecrow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnbcr"]
+_data = {
+"RESET": SubResource("Animation_huptq"),
+"attack": SubResource("Animation_s5r1x")
+}
 
 [node name="Puppet" type="Area2D"]
 collision_mask = 32
@@ -36,4 +113,17 @@ region_rect = Rect2(704, 230, 64, 90)
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_aloer")
 
+[node name="TimerAttack" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="CoinSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vnbcr")
+}
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerAttack" to="." method="_on_timer_attack_timeout"]

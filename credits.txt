@@ -1,20 +1,29 @@
 https://coppermind.net/wiki/Steel_alphabet
 TODO:
-	[ ] - Import Keyboard sprites
 	[ ] - Jump buffer, coyote time, faster stop
+	[ ] - Import Keyboard sprites
+	[ ] - checkpoint on the spikes, scarecrow, playground
 	[x] - Wall stick sprite, death animation
-	[ ] - Attacking enemy (scarecrow)
+	[x] - Attacking enemy (scarecrow)
+	[ ] - depleting metal
 	-> JUICY STUFF
-		[ ] - scarecrow animation / transformation / impact
+		[x] - scarecrow animation
+		[ ] - scarecrow transformation
+		[x] - scarecrow impact
 		[ ] - run or ground impact dust
 		[ ] - environmental fog?!
-	[ ] - depleting metal
-	[ ] - checkpoint on the spikes, scarecrow, playground
 	-> LEVEL
 		[ ] - Create playground
 	-> SOUND FX
 		[x] - Music
-		[ ] - Effects: shoot, impact enemy, hurt, die, metal activation, maybe push pull? 
+		[ ] - Effects: shoot
+		[ ] - Effects: impact enemy
+		[ ] - Effects: hurt
+		[ ] - Effects: die
+		[ ] - Effects: metal activation
+		[ ] - Effects: maybe push pull?
+		[ ] - Effects: scarecrow transformation
+		[ ] - Effects: scarecrow attack
 TOFIX:
 	- line rendering bug when collecting money while pulling (I guess)
 

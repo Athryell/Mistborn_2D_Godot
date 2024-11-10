@@ -61,6 +61,7 @@ func _process(_delta):
 				#metal_points.append(child_position)
 		#else:
 		metal_objects.append(metal_obj)
+		#TODO? metal_objects.collectible_destroyed.connect(parent.on_collectible_destroyed)
 
 	# Release unused lines
 	if metal_objects.size() < _lines_pool.size():
@@ -105,7 +106,7 @@ func _input(event):
 
 		#GameManager.instance.DecrementIronSlider()
 		
-	if not _closest_line:
+	if not _closest_line or not is_detecting_metals:
 		return
 
 	if event.is_action_pressed("pull_metal"):

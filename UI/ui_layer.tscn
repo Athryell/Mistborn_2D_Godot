@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpy7jhqrjcqct"]
+[gd_scene load_steps=26 format=3 uid="uid://bpy7jhqrjcqct"]
 
 [ext_resource type="Script" path="res://UI/UI.gd" id="1_n7wap"]
 [ext_resource type="Theme" uid="uid://cabtixgd4hd3m" path="res://theme.tres" id="2_d50k6"]
@@ -7,8 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://lv0g6t3bhk0j" path="res://assets/sprites/ui_pack/04.png" id="3_l1x7b"]
 [ext_resource type="Texture2D" uid="uid://bh66n2gtoe5dh" path="res://assets/sprites/potions_assets_pack/Potions Assets Pack - 32x32.png" id="3_y22ws"]
 [ext_resource type="Texture2D" uid="uid://cmu2s83uyllyf" path="res://assets/sprites/metal_icons/steel.png" id="4_es6jx"]
-[ext_resource type="Shader" path="res://shaders/shine_potion.gdshader" id="5_heekm"]
+[ext_resource type="Script" path="res://UI/container_metal_push_pull.gd" id="4_i7hlq"]
+[ext_resource type="Shader" path="res://shaders/hit.gdshader" id="4_q5x21"]
+[ext_resource type="Shader" path="res://shaders/shine.gdshader" id="5_heekm"]
 [ext_resource type="Texture2D" uid="uid://4vvoiv715y74" path="res://assets/sprites/metal_icons/iron.png" id="5_vwq0f"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="7_pt0fx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0eyso"]
 bg_color = Color(0.389287, 0.389287, 0.389286, 1)
@@ -25,8 +28,29 @@ bg_color = Color(0.987189, 0.028095, 1.34766e-06, 1)
 atlas = ExtResource("3_l1x7b")
 region = Rect2(0, 3, 113, 37)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2bkh"]
-bg_color = Color(0.188371, 0.188371, 0.188371, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ukj6r"]
+shader = ExtResource("4_q5x21")
+shader_parameter/white_amount = 0.0
+shader_parameter/wave_amount = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wcaxm"]
+shader = ExtResource("4_q5x21")
+shader_parameter/white_amount = 0.0
+shader_parameter/wave_amount = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7nprt"]
+shader = ExtResource("7_pt0fx")
+shader_parameter/thickness = 0.0
+shader_parameter/ring_count = 8
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/border_clipping_fix = false
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = true
+shader_parameter/offset = null
+shader_parameter/max_or_add = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgbxf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe62m"]
 bg_color = Color(0.364706, 0.545098, 0.701961, 1)
@@ -103,56 +127,63 @@ patch_margin_top = 4
 patch_margin_right = 6
 patch_margin_bottom = 7
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Stats"]
+[node name="ContainerMetalPushPull" type="HBoxContainer" parent="Stats"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/separation = -2
+script = ExtResource("4_i7hlq")
 
-[node name="TextureRect2" type="TextureRect" parent="Stats/HBoxContainer"]
+[node name="SteelPush" type="TextureRect" parent="Stats/ContainerMetalPushPull"]
+material = SubResource("ShaderMaterial_ukj6r")
+custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("4_es6jx")
-expand_mode = 2
+expand_mode = 3
 stretch_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="Stats/HBoxContainer"]
+[node name="IronPull" type="TextureRect" parent="Stats/ContainerMetalPushPull"]
+material = SubResource("ShaderMaterial_wcaxm")
 layout_mode = 2
 texture = ExtResource("5_vwq0f")
-expand_mode = 2
+expand_mode = 3
 
-[node name="ProgressBar1" type="Control" parent="Stats/HBoxContainer"]
+[node name="ProgressBar1" type="Control" parent="Stats/ContainerMetalPushPull"]
 layout_mode = 2
 
-[node name="ProgressBar" type="CenterContainer" parent="Stats/HBoxContainer/ProgressBar1"]
+[node name="ProgressBar" type="CenterContainer" parent="Stats/ContainerMetalPushPull/ProgressBar1"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 33.0
-offset_top = -5.0
-offset_right = 42.0
-offset_bottom = 26.0
+offset_top = -6.0
+offset_right = 44.0
+offset_bottom = 25.0
 grow_vertical = 2
 rotation = 1.5708
 size_flags_horizontal = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Stats/HBoxContainer/ProgressBar1/ProgressBar"]
+[node name="ProgressBarBg" type="NinePatchRect" parent="Stats/ContainerMetalPushPull/ProgressBar1/ProgressBar"]
+material = SubResource("ShaderMaterial_7nprt")
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 texture = ExtResource("3_l1x7b")
-region_rect = Rect2(19, 201, 10, 29)
-patch_margin_left = 4
-patch_margin_top = 6
-patch_margin_right = 5
-patch_margin_bottom = 7
+region_rect = Rect2(18, 200, 12, 31)
+patch_margin_left = 5
+patch_margin_top = 7
+patch_margin_right = 6
+patch_margin_bottom = 8
 
-[node name="ProgressBar" type="ProgressBar" parent="Stats/HBoxContainer/ProgressBar1/ProgressBar"]
-custom_minimum_size = Vector2(3, 29)
+[node name="ProgressBar" type="ProgressBar" parent="Stats/ContainerMetalPushPull/ProgressBar1/ProgressBar"]
+clip_contents = true
+custom_minimum_size = Vector2(3, 27)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_s2bkh")
+theme_override_styles/background = SubResource("StyleBoxEmpty_kgbxf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oe62m")
 step = 1.0
-value = 10.0
+value = 50.0
 fill_mode = 3
 show_percentage = false
 

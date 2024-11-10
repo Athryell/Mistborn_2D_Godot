@@ -1,5 +1,11 @@
 extends AnimatedSprite2D
 
+var hit_animation_timer = 0.1
+var last_facing_direction: int = 0:
+	set(value):
+		last_facing_direction = value
+		_flip(value)
+
 @onready var parent = get_parent()
 
 func _ready() -> void:
@@ -7,7 +13,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if parent.is_dead:
+	if parent.is_dead or parent.is_hit:
 		return
 	if parent._is_grounded:
 		set_animation("idle" if parent.direction == 0 else "run")
@@ -25,21 +31,35 @@ func _process(_delta: float) -> void:
 	elif parent.linear_velocity.y < -50 and not parent._is_grounded and not parent._is_sliding:
 		set_animation("jump_start")
 		
-	flip()
 
 
-func flip():
+func _flip(value: int):
 	if parent._is_sliding:
 		return
-	if parent.linear_velocity.x > 0:
+	if value == 1:
 		set_flip_h(false)
 		set_offset(Vector2(7, -6))
-	elif parent.linear_velocity.x < 0:
+	elif value == -1:
 		set_flip_h(true)
 		set_offset(Vector2(-7, -6))
 
 
-func die():
+func hit() -> void:
+	set_animation("hit")
+	_animate_hit()
+	await animation_looped
+	parent.is_hit = false
+
+
+func _animate_hit() -> void:
+	var tween = create_tween()
+	tween.tween_property(material, "shader_parameter/white_amount", 1.0, hit_animation_timer)
+	tween.tween_property(material, "shader_parameter/white_amount", 0.0, hit_animation_timer)
+
+
+func die() -> void:
+	if animation.contains("die"):
+		return
 	set_animation("die")
 	await animation_looped
 	get_tree().reload_current_scene()

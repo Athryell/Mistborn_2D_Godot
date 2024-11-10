@@ -1755,7 +1755,7 @@ size = Vector2(97, 2057)
 
 [node name="Player" parent="." instance=ExtResource("5_757aa")]
 z_index = 10
-position = Vector2(3266, 271)
+position = Vector2(4056, 264)
 
 [node name="MouseManager" type="Node2D" parent="."]
 script = ExtResource("1_6877a")
@@ -1953,6 +1953,9 @@ position = Vector2(3825, 274)
 [node name="CoinPouch" parent="Props/Coins" instance=ExtResource("19_m3opq")]
 position = Vector2(3887, 258)
 
+[node name="CoinPouch2" parent="Props/Coins" instance=ExtResource("19_m3opq")]
+position = Vector2(4076, 273)
+
 [node name="Coin5" parent="Props/Coins" instance=ExtResource("3_cqocb")]
 position = Vector2(3760, 292)
 
@@ -1963,10 +1966,11 @@ position = Vector2(4470, 293)
 
 [node name="MetalSpikes" parent="Props/HurtZones" instance=ExtResource("23_0d7dp")]
 position = Vector2(3055, 323)
+damage = 2
 
 [node name="MetalSpikes2" parent="Props/HurtZones" instance=ExtResource("23_0d7dp")]
 position = Vector2(3360, 322)
-damage = 40
+damage = 2
 
 [node name="Anvil" parent="Props" instance=ExtResource("19_q8fes")]
 position = Vector2(2803, 126)
@@ -2155,14 +2159,14 @@ debug_color = Color(0.741176, 0.596078, 0.109804, 0.109804)
 position = Vector2(4144, 241)
 
 [node name="PotionBase" parent="." instance=ExtResource("25_7rv66")]
-position = Vector2(3934.86, 294.852)
+position = Vector2(1372, 299.852)
 
 [node name="PotionBase2" parent="." instance=ExtResource("25_7rv66")]
-position = Vector2(3987, 295)
+position = Vector2(1424.14, 300)
 potion_type = 1
 
 [node name="PotionBase3" parent="." instance=ExtResource("25_7rv66")]
-position = Vector2(3962, 294)
+position = Vector2(1399.14, 299)
 potion_type = 2
 
 [connection signal="body_entered" from="TriggerAreas/ShowCoinUITrigger" to="CanvasLayer" method="_on_show_coin_ui_trigger_body_entered"]
