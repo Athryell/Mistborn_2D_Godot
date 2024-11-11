@@ -2,9 +2,13 @@ extends Area2D
 
 const STARTING_LINES_AMOUNT = 2
 
+@export var _line_default_color: Color
+@export var _line_highlight_color: Color
+@export var _depleting_metal_speed: float = 0.5
+
+
 var line_scene: PackedScene = load("res://scenes/characters/metal_line.tscn")
 #var chest_point: Transform
-#var detection_radius: float = 5.0
 
 var is_pushing := false:
 	set(value):
@@ -23,9 +27,10 @@ var is_pulling := false:
 var is_detecting_metals := false:
 	set(value):
 		is_detecting_metals = value
-		if value == true:
+		if value == true and Globals.pushpull_left > 0:
 			SignalBus.start_detecting_metals.emit()
 		else:
+			_clear_lines()
 			SignalBus.stop_detecting_metals.emit()
 
 var _lines_pool: Array[Line2D]
@@ -39,10 +44,15 @@ func _ready():
 		_create_line()
 
 
-func _process(_delta):
+func _process(delta):
 	if not is_detecting_metals:
 		return
-	
+	if Globals.pushpull_left <= 0:
+		is_detecting_metals = false
+		return
+		
+	Globals.pushpull_left -= _depleting_metal_speed * delta
+
 	var metals_in_range: Array = get_overlapping_bodies()
 
 	if metals_in_range.size() == 0:
@@ -91,12 +101,10 @@ func _input(event):
 		is_detecting_metals = true
 	elif event.is_action_released("use_metal"):
 		is_detecting_metals = false
-		_clear_lines()
 	
 	if event.is_action_pressed("toggle_metal"):
 		if is_detecting_metals:
 			is_detecting_metals = false
-			_clear_lines()
 		else:
 			is_detecting_metals = true
 		
@@ -174,22 +182,12 @@ func _select_closest_line_to_mouse():
 			_closest_line = line
 
 
-#func shoot(coin: RigidBody2D) -> void:
-	#if not _line_endpoint_dict.values().has(coin):
-		#var line = _get_line()
-		#_line_endpoint_dict[line] = coin
-		#_set_lines_positions()
-		#_closest_line = line
-		#_highlight_line()
-		#is_pushing = true
-
-
 func _highlight_line():
 	for line in _line_endpoint_dict.keys():
 		if line == _closest_line:
-			line.default_color = Color.RED
+			line.default_color = _line_highlight_color
 		else:
-			line.default_color = Color.BLUE
+			line.default_color = _line_default_color
 
 
 func _set_lines_positions():

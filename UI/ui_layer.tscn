@@ -1,17 +1,16 @@
-[gd_scene load_steps=26 format=3 uid="uid://bpy7jhqrjcqct"]
+[gd_scene load_steps=22 format=3 uid="uid://bpy7jhqrjcqct"]
 
 [ext_resource type="Script" path="res://UI/UI.gd" id="1_n7wap"]
 [ext_resource type="Theme" uid="uid://cabtixgd4hd3m" path="res://theme.tres" id="2_d50k6"]
 [ext_resource type="Script" path="res://UI/health_bar.gd" id="2_dkqm6"]
 [ext_resource type="Texture2D" uid="uid://dcmujguw5ei6t" path="res://assets/sprites/coins/big gold coin.png" id="2_ffmui"]
-[ext_resource type="Texture2D" uid="uid://lv0g6t3bhk0j" path="res://assets/sprites/ui_pack/04.png" id="3_l1x7b"]
-[ext_resource type="Texture2D" uid="uid://bh66n2gtoe5dh" path="res://assets/sprites/potions_assets_pack/Potions Assets Pack - 32x32.png" id="3_y22ws"]
+[ext_resource type="Texture2D" uid="uid://lv0g6t3bhk0j" path="res://assets/sprites/ui/ui_pack/04.png" id="3_l1x7b"]
 [ext_resource type="Texture2D" uid="uid://cmu2s83uyllyf" path="res://assets/sprites/metal_icons/steel.png" id="4_es6jx"]
 [ext_resource type="Script" path="res://UI/container_metal_push_pull.gd" id="4_i7hlq"]
 [ext_resource type="Shader" path="res://shaders/hit.gdshader" id="4_q5x21"]
-[ext_resource type="Shader" path="res://shaders/shine.gdshader" id="5_heekm"]
 [ext_resource type="Texture2D" uid="uid://4vvoiv715y74" path="res://assets/sprites/metal_icons/iron.png" id="5_vwq0f"]
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="7_pt0fx"]
+[ext_resource type="Script" path="res://UI/potion_manager.gd" id="11_notui"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0eyso"]
 bg_color = Color(0.389287, 0.389287, 0.389286, 1)
@@ -54,29 +53,6 @@ shader_parameter/max_or_add = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe62m"]
 bg_color = Color(0.364706, 0.545098, 0.701961, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qktls"]
-shader = ExtResource("5_heekm")
-shader_parameter/size_effect = 1.0
-shader_parameter/speed = -0.1
-shader_parameter/highlight_strength = 0.5
-shader_parameter/color_mode_toggle = false
-shader_parameter/is_horizontal = false
-shader_parameter/pause_duration = 0.2
-shader_parameter/texture_size = Vector2(256, 256)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o8dn8"]
-load_path = "res://.godot/imported/potions.png-9450ab7863ce399218ea8ce81fb26ed6.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_itsk6"]
-shader = ExtResource("5_heekm")
-shader_parameter/size_effect = 1.0
-shader_parameter/speed = -0.1
-shader_parameter/highlight_strength = 0.5
-shader_parameter/color_mode_toggle = false
-shader_parameter/is_horizontal = false
-shader_parameter/pause_duration = 0.2
-shader_parameter/texture_size = Vector2(256, 256)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_n7wap")
@@ -182,7 +158,6 @@ custom_minimum_size = Vector2(3, 27)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_kgbxf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oe62m")
-step = 1.0
 value = 50.0
 fill_mode = 3
 show_percentage = false
@@ -209,45 +184,6 @@ region_rect = Rect2(4, 4, 7, 7)
 
 [node name="PotionsCointainer" type="Node2D" parent="."]
 position = Vector2(18, 336)
-
-[node name="EmptyPotion1" type="Sprite2D" parent="PotionsCointainer"]
-texture = ExtResource("3_y22ws")
-region_enabled = true
-region_rect = Rect2(44, 99, 8, 27)
-
-[node name="PotionBlue" type="Sprite2D" parent="PotionsCointainer/EmptyPotion1"]
-material = SubResource("ShaderMaterial_qktls")
-texture = SubResource("CompressedTexture2D_o8dn8")
-region_enabled = true
-region_rect = Rect2(269, 101, 8, 27)
-
-[node name="PotionLabel" type="Label" parent="PotionsCointainer/EmptyPotion1"]
-visible = false
-offset_left = -3.0
-offset_top = 14.0
-offset_right = 5.0
-offset_bottom = 22.0
-size_flags_horizontal = 8
-theme = ExtResource("2_d50k6")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "1"
-
-[node name="EmptyPotion2" type="Sprite2D" parent="PotionsCointainer"]
-position = Vector2(16, 0)
-texture = ExtResource("3_y22ws")
-region_enabled = true
-region_rect = Rect2(44, 99, 8, 27)
-
-[node name="PotionRed" type="Sprite2D" parent="PotionsCointainer/EmptyPotion2"]
-material = SubResource("ShaderMaterial_itsk6")
-texture = ExtResource("3_y22ws")
-region_enabled = true
-region_rect = Rect2(76, 99, 8, 27)
-
-[node name="EmptyPotion3" type="Sprite2D" parent="PotionsCointainer"]
-position = Vector2(32, 0)
-texture = ExtResource("3_y22ws")
-region_enabled = true
-region_rect = Rect2(44, 99, 8, 27)
+script = ExtResource("11_notui")
 
 [connection signal="timeout" from="Stats/Health/WaitTimeBottomBar" to="Stats/Health" method="_on_wait_time_bottom_bar_timeout"]

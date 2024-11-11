@@ -1,11 +1,14 @@
 https://coppermind.net/wiki/Steel_alphabet
+TOFIX:
+	- Can slide on barrels??
 TODO:
-	[ ] - Jump buffer, coyote time, faster stop
-	[ ] - Import Keyboard sprites
-	[ ] - checkpoint on the spikes, scarecrow, playground
+	[x] - Jump buffer, coyote time, faster stop
+	[x] - Import Keyboard sprites
+	[x] - Import mouse buttons sprites
+	[x] - Depleting metal
+	[ ] - Checkpoint on the spikes, scarecrow, playground
 	[x] - Wall stick sprite, death animation
 	[x] - Attacking enemy (scarecrow)
-	[ ] - depleting metal
 	-> JUICY STUFF
 		[x] - scarecrow animation
 		[ ] - scarecrow transformation
@@ -24,8 +27,6 @@ TODO:
 		[ ] - Effects: maybe push pull?
 		[ ] - Effects: scarecrow transformation
 		[ ] - Effects: scarecrow attack
-TOFIX:
-	- line rendering bug when collecting money while pulling (I guess)
 
 CREDITS:
 Background - https://free-game-assets.itch.io/free-horizontal-game-backgrounds
@@ -41,6 +42,8 @@ Coins - https://its-lerm.itch.io/16-bit-currency-set
 Bars - https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar
 UI - https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar
 Effects & FX - https://bdragon1727.itch.io/750-effect-and-fx-pixel-all
+
+Keyboard keys - https://juliocacko.itch.io/free-input-prompts
 
 Music
 pads-with-flute-143993 - Music by <a href="https://pixabay.com/it/users/onetent-15616180/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=143993">Shakib Hasan</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=143993">Pixabay</a>

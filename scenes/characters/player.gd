@@ -21,17 +21,21 @@ var _is_grounded := true:
 		if _is_grounded and not _can_double_jump:
 			_can_double_jump = true
 var _is_agains_wall := false
-var _is_sliding := false
+var _is_sliding := false:
+	set(value):
+		_is_sliding = value
+		if _is_sliding:
+			_can_jump = true
 var is_shooting := false
 var _has_coin := false
-var coyote_time_counter = 0.0 
-var jump_buffer_counter = 0.0
+var _coyote_time_counter = 0.0 
+var _jump_buffer_counter = 0.0
 var _is_double_jumping := false
 var _jump_request := false
 var _can_jump := false
 var _can_double_jump := false
 var direction = 0
-var coin_spawn_distance = 15
+var _coin_spawn_distance = 15
 var coin
 var is_hit := false
 var is_dead := false
@@ -78,9 +82,9 @@ func _integrate_forces(state):
 	var vel_x = abs(state.linear_velocity.x)
 	if vel_x < max_velocity:
 		if not _is_grounded:
-			direction *= 0.2
+			direction *= 0.2 # Air control
 		state.apply_central_force(Vector2.RIGHT * direction * SPEED)
-	if direction == 0:
+	if direction == 0: # Dump velocity
 		state.linear_velocity.x *= (1 - _damping_factor * state.step)
 	if _jump_request and not _is_sliding:
 		state.apply_central_impulse(Vector2.UP * JUMP_STRENGTH)
@@ -93,32 +97,33 @@ func _integrate_forces(state):
 
 
 func _handle_jump(delta) -> void:
-	if coyote_time_counter > 0:
-		coyote_time_counter -= delta
-	if jump_buffer_counter > 0:
-		jump_buffer_counter -= delta
+	if _coyote_time_counter > 0:
+		_coyote_time_counter -= delta
+	if _jump_buffer_counter > 0:
+		_jump_buffer_counter -= delta
 	
 	if _is_grounded or _is_sliding:
-		coyote_time_counter = _coyote_time
+		_coyote_time_counter = _coyote_time
 	
 	if Input.is_action_just_pressed("jump"):
 		if not _is_grounded and _can_double_jump and _has_coin and not _is_sliding and not _can_jump:
-		#if coyote_time_counter <= 0 or jump_buffer_counter <= 0:
+		#if _coyote_time_counter <= 0 or _jump_buffer_counter <= 0:
 			_can_double_jump = false
 			_is_double_jumping = true
 			shoot(Vector2.DOWN)
 		else:
-			jump_buffer_counter = _jump_buffer_time
+			_jump_buffer_counter = _jump_buffer_time
 	if Input.is_action_just_released("jump"):
 		_is_double_jumping = false
 	
-	if coyote_time_counter > 0 and jump_buffer_counter > 0:
+	if _coyote_time_counter > 0 and _jump_buffer_counter > 0:
 		if not _can_jump:
 			return
-		_jump_request = true
 		_can_jump = false
-		jump_buffer_counter = 0
-		coyote_time_counter = 0
+		_jump_request = true
+		_jump_buffer_counter = 0
+		_coyote_time_counter = 0
+
 
 func _handle_push_pull() -> void:
 		#if not $MetalDetector.is_detecting_metals:
@@ -144,7 +149,7 @@ func shoot(dir: Vector2) -> void:
 	hit_box.total_coins -= 1
 	coin = COIN.instantiate()
 	coin.collectible_destroyed.connect(_on_collectible_destroyed)
-	coin.global_position = global_position + dir * coin_spawn_distance
+	coin.global_position = global_position + dir * _coin_spawn_distance
 	_coins_container.add_child(coin)
 	
 	_apply_first_impulse()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp6y4fk48udjf"
-path="res://.godot/imported/01.png-e27f9a5a585bb5120eda4488269c5584.ctex"
+uid="uid://2e4wx4o2sisk"
+path="res://.godot/imported/T_5_Key_Alt.png-46636fe77d8df3ec1488eff759ed134c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui_pack/01.png"
-dest_files=["res://.godot/imported/01.png-e27f9a5a585bb5120eda4488269c5584.ctex"]
+source_file="res://assets/sprites/ui/keyboard/T_5_Key_Alt.png"
+dest_files=["res://.godot/imported/T_5_Key_Alt.png-46636fe77d8df3ec1488eff759ed134c.ctex"]
 
 [params]
 

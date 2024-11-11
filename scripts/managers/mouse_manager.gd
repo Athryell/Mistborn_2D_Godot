@@ -31,7 +31,8 @@ func _on_start_detecting_metals() -> void:
 
 func _on_stop_detecting_metals() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	current_cursor.hide()
+	if current_cursor:
+		current_cursor.hide()
 
 
 func _on_pushing() -> void:

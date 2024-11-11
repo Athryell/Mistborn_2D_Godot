@@ -65,6 +65,7 @@ func _animate_hit() -> void:
 func _go_to_next_state() -> void:
 	match _state:
 		States.PUPPET:
+			SignalBus.scarecrow_appear.emit()
 			_state = States.SCARECROW
 			_coins_left = _states_data[States.SCARECROW].starting_coins_held
 			$TimerAttack.start(1)

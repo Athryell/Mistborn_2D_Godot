@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=3 uid="uid://dsxp475jfa0aw"]
+
+[ext_resource type="Texture2D" uid="uid://bh66n2gtoe5dh" path="res://assets/sprites/potions_assets_pack/Potions Assets Pack - 32x32.png" id="1_wxyhm"]
+[ext_resource type="Texture2D" uid="uid://dwwguynple7vx" path="res://assets/sprites/white_pixel.png" id="2_h8tpr"]
+[ext_resource type="Shader" path="res://shaders/shine.gdshader" id="2_swqtt"]
+[ext_resource type="Texture2D" uid="uid://dwm83nu2np3jo" path="res://assets/sprites/ui/keyboard/T_2_Key_Alt.png" id="3_68wxe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14mc0"]
+shader = ExtResource("2_swqtt")
+shader_parameter/size_effect = 1.0
+shader_parameter/speed = -0.1
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/pause_duration = 0.2
+shader_parameter/texture_size = Vector2(256, 256)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43klc"]
+shader = ExtResource("2_swqtt")
+shader_parameter/size_effect = 1.0
+shader_parameter/speed = -0.1
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/pause_duration = 0.2
+shader_parameter/texture_size = Vector2(256, 256)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jmay1"]
+load_path = "res://.godot/imported/potions.png-9450ab7863ce399218ea8ce81fb26ed6.ctex"
+
+[sub_resource type="Animation" id="Animation_msrci"]
+resource_name = "potion_fill"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PotionSprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-5.68434e-14, 28), Vector2(-3.38813e-21, 1.90735e-06)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PotionSprites/PotionRed:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.42109e-14, -1), Vector2(1.69407e-21, -1.19209e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PotionSprites/PotionBlue:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.42109e-14, -1), Vector2(6.70552e-08, -1.70299e-08)]
+}
+
+[sub_resource type="Animation" id="Animation_83m4y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PotionSprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.68434e-14, 28)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PotionSprites/PotionRed:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.42109e-14, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PotionSprites/PotionBlue:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.70552e-08, -1.70299e-08)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpkd6"]
+_data = {
+"RESET": SubResource("Animation_83m4y"),
+"potion_fill": SubResource("Animation_msrci")
+}
+
+[node name="EmptyPotion" type="Sprite2D"]
+texture = ExtResource("1_wxyhm")
+region_enabled = true
+region_rect = Rect2(44, 99, 8, 27)
+
+[node name="PotionSprites" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(-5.68434e-14, 28)
+scale = Vector2(8, 28)
+texture = ExtResource("2_h8tpr")
+
+[node name="PotionRed" type="Sprite2D" parent="PotionSprites"]
+visible = false
+material = SubResource("ShaderMaterial_14mc0")
+position = Vector2(1.42109e-14, -1)
+scale = Vector2(0.125, 0.0357143)
+texture = ExtResource("1_wxyhm")
+region_enabled = true
+region_rect = Rect2(76, 99, 8, 27)
+
+[node name="PotionBlue" type="Sprite2D" parent="PotionSprites"]
+visible = false
+material = SubResource("ShaderMaterial_43klc")
+position = Vector2(6.70552e-08, -1.70299e-08)
+scale = Vector2(0.125, 0.0357143)
+texture = SubResource("CompressedTexture2D_jmay1")
+region_enabled = true
+region_rect = Rect2(269, 101, 8, 27)
+
+[node name="Input" type="Sprite2D" parent="."]
+position = Vector2(4, 14)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("3_68wxe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vpkd6")
+}

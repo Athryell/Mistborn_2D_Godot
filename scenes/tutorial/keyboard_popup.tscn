@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhyjeull617fj"]
+
+[ext_resource type="Script" path="res://scenes/tutorial/keyboard_popup.gd" id="1_2v7mr"]
+[ext_resource type="Texture2D" uid="uid://dwwguynple7vx" path="res://assets/sprites/white_pixel.png" id="1_dik4j"]
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="3_jayv1"]
+[ext_resource type="Texture2D" uid="uid://bc64lfucb4c0n" path="res://assets/sprites/ui/keyboard/T_A_Key_Alt.png" id="4_3fapu"]
+
+[node name="KeyboardPopup" type="Area2D"]
+z_index = -1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2v7mr")
+
+[node name="SpriteClip" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(0.624999, 0.375001)
+scale = Vector2(50.75, 48.7855)
+texture = ExtResource("1_dik4j")
+
+[node name="SpriteSign" type="Sprite2D" parent="SpriteClip"]
+scale = Vector2(0.0205503, 0.0205503)
+texture = ExtResource("3_jayv1")
+region_enabled = true
+region_rect = Rect2(480, 18, 33, 46)
+
+[node name="SpriteKey" type="Sprite2D" parent="SpriteClip/SpriteSign"]
+position = Vector2(-0.599274, -9.35109)
+scale = Vector2(0.134837, 0.134837)
+texture = ExtResource("4_3fapu")
+region_rect = Rect2(17, 15, 109, 104)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

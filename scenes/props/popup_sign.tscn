@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://blfx54f7vjex2"]
+
+[ext_resource type="Texture2D" uid="uid://dwwguynple7vx" path="res://assets/sprites/white_pixel.png" id="1_bx53k"]
+[ext_resource type="Texture2D" uid="uid://ct7t170jc5xg4" path="res://assets/sprites/environment/village_props/TX Village Props.png" id="2_u1eqp"]
+[ext_resource type="Script" path="res://scenes/props/popup_sign_scarecrow.gd" id="2_vpaqx"]
+[ext_resource type="Theme" uid="uid://cabtixgd4hd3m" path="res://theme.tres" id="3_ljw8o"]
+
+[node name="PopupSignScarecrow" type="Sprite2D"]
+clip_children = 1
+position = Vector2(21.25, 21.25)
+scale = Vector2(43.5, 43.5)
+texture = ExtResource("1_bx53k")
+script = ExtResource("2_vpaqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0205503, 0.0205503)
+texture = ExtResource("2_u1eqp")
+region_enabled = true
+region_rect = Rect2(480, 18, 33, 46)
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -15.9407
+offset_top = -18.178
+offset_right = 16.0593
+offset_bottom = -3.17797
+theme = ExtResource("3_ljw8o")
+text = "Ups"
+horizontal_alignment = 1
+vertical_alignment = 1
